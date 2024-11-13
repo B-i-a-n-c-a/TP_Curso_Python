@@ -1,42 +1,54 @@
-from fornecedor import Fornecedor
+from flor import Flor
 
 class Sistema: 
 
-    dados = Fornecedor()
+    def __init__(self):
+        self.estoque = []
 
-    def estoque(self):
-        print("nada ainda estoque")
+    def adiciona_flor(self, especie, quantidade, preco):
+        flor = Flor(especie, quantidade, preco)
+        self.estoque.append(flor)
+        print(f"Flor: {flor.especie} | Quantidade: {flor.quantidade} | Preco: {flor.preco} adicionada ao estoque com sucesso!!!")
 
-    def compra_fornecedor(dados):
-        total = (dados.quantidade * dados.preco)
-        print("O total da compra de '{dados.especie}' foi de R$: ", total)
+    def imprime_estoque(self):
+        print("***** ESTOQUE *****")
+        if not self.estoque:
+            print("Estoque vazio!")
+        for flores in self.estoque:
+            print(f" Especie: {flores.especie} | Quantidade: {flores.quantidade} | Preco: {flores.preco} ")
+            print("---------------------------------------------------\n")
 
-    def venda_buque(dados, self):
-        tamanho = input("Qual o tamanho do buque?\n[PEQUENO, MEDIO OU GRANDE]")
-        especie = input("De qual especie sera o buque:")
-        if tamanho == "pequeno" and especie in self.itens:
-            total_buque =  ((self.preco + (self.preco/2)) * 12) + 50
-            print("O buque tamanho PEQUENO ficou R$: ", total_buque) 
-        elif tamanho == "medio" and especie in self.itens:
-            total_buque =  ((self.preco + (self.preco/2)) * 24) + 50
-            print("O buque tamanho MEDIO ficou R$: ", total_buque) 
-        elif tamanho == "grande" and especie in self.itens:
-            total_buque =  ((self.preco + (self.preco/2)) * 36) + 50
-            print("O buque tamanho GRANDE ficou R$: ", total_buque) 
-        else:
-            print("Tamanho ou especie não identificada!!!")
+    def compra_por_flor(self):
+        especie = input("Qual especie deseja calcular o valor da compra? ")
+        for flor in self.estoque:
+            if flor.especie == especie:
+                total = (flor.quantidade * flor.preco)
+                print(f"O total da compra de {especie} foi de R$: ", total)
+                return True
+        print("Especie não encontrada no estoque!")
+        return False
 
-
-
-
-
-
-
-
+    def venda_buque(self):
+        tamanho = input("Qual o tamanho do buque?\n[P, M OU G] ")
+        especie = input("De qual especie sera o buque: ")
+        for especie in self.estoque:
+            if tamanho.lower() == "P".lower() and especie in self.estoque:
+                total_buque =  ((self.estoque[2].preco + (self.estoque[2].preco / 2)) * 12) + 50
+                print("\nO buque tamanho PEQUENO ficou R$ ", total_buque) 
+                break
+            elif tamanho.lower() == "M".lower() and especie in self.estoque:
+                total_buque =  ((self.estoque[2].preco + (self.estoque[2].preco / 2)) * 24) + 50
+                print("\nO buque tamanho MEDIO ficou R$ ", total_buque) 
+                break
+            elif tamanho.lower() == "G".lower() and especie in self.estoque:
+                total_buque =  ((self.estoque[2].preco + (self.estoque[2].preco / 2)) * 36) + 50
+                print("\nO buque tamanho GRANDE ficou R$ ", total_buque) 
+                break
+            else:
+                print("Tamanho ou especie não identificada!!!")
 
     def cadastro_cliente(self):
         print("nada ainda cadastro cliente")
-
 
     def pedidos(self):
         print("nada ainda pedidos")

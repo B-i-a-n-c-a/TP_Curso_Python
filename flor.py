@@ -1,20 +1,10 @@
-class Fornecedor:
-
-    itens = []
+class Flor:
 
     def __init__(self, especie, quantidade, preco):
         self.especie = especie
         self.quantidade = quantidade
         self.preco = preco #preço unitário 
 
-    def adiciona_flor(self, especie, quantidade, preco):
-        flor = Fornecedor(especie, quantidade, preco)
-        self.itens[especie] = flor
-
-    def imprime_estoque(self):
-        for self.especie in self.itens:
-            print("| Especie: {self.especie} | Quantidade: {self.quantidade} |\n")
-            print("----------------------------------\n")
 
 
     #especies e precos usados para testes
